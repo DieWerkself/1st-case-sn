@@ -1,0 +1,13 @@
+.friends {
+    align-self: center;
+    padding-top: 20px;
+}
+
+.title {
+    padding-bottom: 5px;
+}
+
+.friendElement {
+    display: flex;
+    justify-content: space-around;
+}

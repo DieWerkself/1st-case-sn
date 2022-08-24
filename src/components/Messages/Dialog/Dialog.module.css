@@ -1,0 +1,33 @@
+.user {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px 10px 0px 10px;
+    border-right: 2px solid darkgoldenrod;
+}
+
+.dialog {
+    color: black;
+    text-decoration: none;
+    align-self: center;
+    padding-left: 5px;
+    transition: 0.5s;
+}
+
+.dialog__active{
+    composes: dialog;
+    color: firebrick;
+    padding-left: 2px;
+}
+
+.photo_a {
+
+}
+
+.photo_a img {
+    width: 35px;
+    border-radius: 50%;
+}
+
+.name {
+
+}

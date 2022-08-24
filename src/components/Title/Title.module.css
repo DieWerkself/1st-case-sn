@@ -1,0 +1,7 @@
+.title {
+    grid-area: t;
+    align-self: center;
+    font-family: "Century Gothic";
+    font-weight: 600;
+    font-size: 25px;
+}
