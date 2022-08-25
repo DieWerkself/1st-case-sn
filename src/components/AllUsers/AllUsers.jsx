@@ -13,7 +13,6 @@ const AllUsers = (props) => {
     let curPL = curP + 5;
     let slicedPages = pages.slice(curPF, curPL);
 
-debugger
     return (
         <div className={s.users}>
             {
