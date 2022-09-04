@@ -5,3 +5,40 @@
     font-weight: 600;
     font-size: 25px;
 }
+
+.headNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.auth a{
+    color: black;
+    text-decoration: none;
+}
+
+.auth a:hover {
+    color: firebrick;
+}
+
+.photo_a img{
+    width: 50px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.loginInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emailInfo {
+    font-size: 10px;
+}

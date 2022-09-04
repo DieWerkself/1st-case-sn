@@ -13,6 +13,10 @@
     text-decoration: none;
 }
 
+.item:hover {
+    color: firebrick;
+}
+
 .active {
     color: firebrick;
     text-decoration: none;

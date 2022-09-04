@@ -61,6 +61,11 @@ button:hover {
     text-decoration: none;
 }
 
+button:disabled,
+button[disabled]{
+    color: #000;
+}
+
 button:active {
     transform: scale(0.95);
 }
