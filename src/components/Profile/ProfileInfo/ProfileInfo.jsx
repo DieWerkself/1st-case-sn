@@ -6,6 +6,7 @@ import defaultAvatar from "../../../assests/image/default-avatar.jpg";
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
+
         return <Preloader />
     }
     return (

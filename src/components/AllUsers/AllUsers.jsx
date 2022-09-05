@@ -1,6 +1,5 @@
 import s from "./AllUsers.module.css";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 const AllUsers = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -29,33 +28,12 @@ const AllUsers = (props) => {
                             {u.followed
                                 ?
                                 <button disabled={props.followingProgress.some( id => id === u.id )} className={s.buttonUser}
-                                        onClick={() => {
-                                            props.toggleFollowingProgress(true, u.id);
-                                            usersAPI.deleteFollow(u.id).then(response => {
-                                                    if (response.resultCode === 0) {
-                                                        props.unfollow(u.id);
-                                                    }
-                                                props.toggleFollowingProgress(false, u.id);
-                                                });
-
-
-
-                                        }}>Unfollow
+                                        onClick={() => {props.unfollow(u.id);}}>Unfollow
                                 </button>
                                 :
                                 <button disabled={props.followingProgress.some( id => id === u.id )} className={s.buttonUser}
-                                        onClick={() => {
-                                            props.toggleFollowingProgress(true, u.id);
-                                                usersAPI.addFollow(u.id).then(response => {
-
-                                                    if (response.resultCode === 0) {
-                                                        props.follow(u.id)
-                                                    }
-                                                    props.toggleFollowingProgress(false, u.id);
-                                                });
-                                        }}>Follow
+                                        onClick={() => {props.follow(u.id);}}>Follow
                                 </button>}
-                            {/*<button onClick={() => {props.follow(u.id)}}>{ u.followed ? 'Unfollow' : 'Follow'}</button>*/}
                         </div>
                     </div>
                     <div className={s.rightBlock}>

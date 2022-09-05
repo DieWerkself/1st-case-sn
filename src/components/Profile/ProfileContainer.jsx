@@ -1,33 +1,30 @@
 import React from "react";
-import axios from "axios";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profileReducer";
+import {getProfile} from "../../redux/profileReducer";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
-import {usersAPI} from "../../api/api";
+
+
 
 class ProfileContainer extends React.Component {
 
+
+
     componentDidMount() {
+        console.log(this.props.test);
+
         let userId = this.props.router.params.userId;
-        if (!userId) {
-            userId = null;
-        }
-            usersAPI.getProfile(userId).then(response => {
-                this.props.setUserProfile(response);
-            });
+
+        this.props.getProfile(userId, this.props.isAuth);
     }
 
-    // componentDidUpdate(prevProps) {
-    //     let userId = this.props.router.params.userId;
-    //     if (prevProps.router.params.userId !== userId) {
-    //         let userId = 2;
-    //         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-    //             .then(response => {
-    //                 this.props.setUserProfile(response.data);
-    //             });
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        let userId = this.props.router.params.userId;
+        if (prevProps.router.params.userId !== userId) {
+            let userId = this.props.userId;
+            this.props.getProfile(userId);
+        }
+    }
 
     render() {
         return <Profile {...this.props} profile={this.props.profile}/>
@@ -52,11 +49,14 @@ function withRouter(Component) {
 let mapStateToProps = (state) => {
 
     return {
-        profile: state.profileP.profile
+        profile: state.profileP.profile,
+        test: state.profileP.test,
+        isAuth: state.auth.isAuth,
+        userId: state.auth.userId,
     }
 }
 
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer))
+export default connect(mapStateToProps, {getProfile})(withRouter(ProfileContainer))
 
 
