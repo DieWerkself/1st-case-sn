@@ -5,23 +5,22 @@ import React from "react";
 import Preloader from "../common/Preloader/Preloader";
 
 const Title = (props) => {
-    if(!props.profile) {
-        return <Preloader />
-    }
+    debugger
     return (
         <div className={s.headNav}>
             <div className={s.title}>
                 Site name
             </div>
             <div className={s.auth}>
-                <div className={s.photo_a}>
-                    <img src={props.profile.photos.small != null ? props.profile.photos.small : defaultAvatar}/>
+                {props.isAuth ? <>
+                    <div className={s.photo_a}>
+                        {props.profile.userId != null ? <img src={props.profile.photos.small != null ? props.profile.photos.small : defaultAvatar}/> : <Preloader />}
                 </div>
-                {props.isAuth ? <div className={s.loginInfo}>
-                    <div>{props.login}</div>
-                    <div className={s.emailInfo}>ID:{props.profile.userId}</div>
-                    <div className={s.emailInfo}>{props.email}</div>
-                </div> : <NavLink to={'/login'}>Login</NavLink>}
+                <div className={s.loginInfo}>
+                    <div>{props.login != null ? props.login : <Preloader />}</div>
+                    <div className={s.emailInfo}>ID:{props.profile.userId != null ? props.profile.userId : <Preloader />}</div>
+                    <div className={s.emailInfo}>{props.email != null ? props.email : <Preloader />}</div>
+                </div></> : <NavLink to={'/login'}>Login</NavLink>}
 
             </div>
         </div>

@@ -61,17 +61,13 @@ export const getProfile = (userId) => (dispatch) => {
                 usersAPI.getProfile(id).then(response => {
                     dispatch(setUserProfile(response));
                 })
-            } else if (response.resultCode === 1) {
-                usersAPI.getProfile(2).then(response => {
-                dispatch(setUserProfile(response));
-            })}
+            }
         })
     }  else {
         usersAPI.getProfile(userId).then(response => {
             dispatch(setUserProfile(response))
         })
     };
-    debugger
 }
 
 export default profileReducer;

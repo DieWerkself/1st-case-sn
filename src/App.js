@@ -10,6 +10,7 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import AllUsersContainer from "./components/AllUsers/AllUsersContainer";
 import ProfileContainerC from "./components/Profile/ProfileContainer";
 import TitleContainer from "./components/Title/TitleContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -37,6 +38,7 @@ const App = (props) => {
                            />}
                     />
                     <Route path="/news/*" element={<News/>}/>
+                    <Route path="/login/*" element={<Login/>}/>
                     <Route path="/music/*" element={<Music/>}/>
                     <Route path="/settings/*" element={<Settings/>}/>
                     <Route path="/users/*" element={<AllUsersContainer/>}/>
