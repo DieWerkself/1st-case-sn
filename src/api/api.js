@@ -23,7 +23,7 @@ export const usersAPI = {
     },
 
     getProfile(userId) {
-        return baseGet.get(`/profile/${userId}`)
+        return baseGet.get(`profile/${userId}`)
             .then(response => response.data);
     },
 

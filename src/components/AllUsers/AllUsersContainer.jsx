@@ -9,6 +9,7 @@ import React from "react";
 import AllUsers from "./AllUsers";
 import defaultAvatar from "../../assests/image/default-avatar.jpg";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
 
@@ -38,6 +39,8 @@ class UsersContainer extends React.Component {
     }
 }
 
+let redirectComponent = withAuthRedirect(UsersContainer);
+
 let mapStateToProps = (state) => {
     return {
         allUsers: state.usersP.users,
@@ -51,7 +54,7 @@ let mapStateToProps = (state) => {
 
 const AllUsersContainer = connect(mapStateToProps,
     {followUser, setCurrentPage,
-        toggleFollowingProgress, getUsers, updatePage, unfollowUser })(UsersContainer)
+        toggleFollowingProgress, getUsers, updatePage, unfollowUser })(redirectComponent)
 
 export default AllUsersContainer;
 
