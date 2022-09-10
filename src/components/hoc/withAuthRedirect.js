@@ -1,4 +1,3 @@
-import {Navigate} from "react-router-dom";
 import React from "react";
 import Login from "../Login/Login";
 import {connect} from "react-redux";

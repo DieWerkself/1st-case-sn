@@ -10,6 +10,7 @@ import AllUsers from "./AllUsers";
 import defaultAvatar from "../../assests/image/default-avatar.jpg";
 import Preloader from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -23,23 +24,22 @@ class UsersContainer extends React.Component {
 
     render() {
         return <>
-            { this.props.isFetching ? <Preloader /> : <AllUsers
-                allUsers={this.props.allUsers}
-                pageSize={this.props.pageSize}
-                totalUsersCount={this.props.totalUsersCount}
-                currentPage={this.props.currentPage}
-                defaultAvatar={defaultAvatar}
-                onPageChanges={this.onPageChanges}
-                unfollow={this.props.unfollowUser}
-                follow={this.props.followUser}
-                followingProgress={this.props.followingProgress}
-            /> }
+            { this.props.isFetching ? <Preloader /> : '' }
+            <AllUsers
+            allUsers={this.props.allUsers}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount}
+            currentPage={this.props.currentPage}
+            defaultAvatar={defaultAvatar}
+            onPageChanges={this.onPageChanges}
+            unfollow={this.props.unfollowUser}
+            follow={this.props.followUser}
+            followingProgress={this.props.followingProgress}
+        />
 
         </>
     }
 }
-
-let redirectComponent = withAuthRedirect(UsersContainer);
 
 let mapStateToProps = (state) => {
     return {
@@ -52,9 +52,10 @@ let mapStateToProps = (state) => {
     }
 }
 
-const AllUsersContainer = connect(mapStateToProps,
-    {followUser, setCurrentPage,
-        toggleFollowingProgress, getUsers, updatePage, unfollowUser })(redirectComponent)
-
-export default AllUsersContainer;
+export default compose(
+    connect(mapStateToProps,
+        {followUser, setCurrentPage,
+            toggleFollowingProgress, getUsers, updatePage, unfollowUser }),
+    withAuthRedirect
+)(UsersContainer)
 

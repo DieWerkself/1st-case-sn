@@ -2,8 +2,6 @@ import s from './Messages.module.css';
 import DialogItem from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import NewMessageContainer from "./Message/NewMessageContainer";
-import Login from "../Login/Login";
-import {Navigate} from "react-router-dom";
 
 
 const Messages = (props) => {
