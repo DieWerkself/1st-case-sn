@@ -2,6 +2,7 @@ import React from "react";
 import {addMessageCreator, newTextActionCreator} from "../../../redux/messageReducer";
 import NewMessage from "./NewMessage";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -19,6 +20,7 @@ let mapDispatchToProps = (dispatch) => {
         }
     }
 }
-const NewMessageContainer = connect(mapStateToProps, mapDispatchToProps) (NewMessage);
 
-export default NewMessageContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(NewMessage)

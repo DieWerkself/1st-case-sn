@@ -1,9 +1,10 @@
 import s from './Main.module.css';
+import Preloader from "../common/Preloader/Preloader";
 
 const Main = (props) => {
     return (
         <div>
-            Главная
+            <Preloader />
         </div>
     );
 }
