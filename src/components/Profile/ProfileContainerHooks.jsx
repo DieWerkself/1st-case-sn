@@ -1,37 +1,31 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { getProfile, updateUserStatus } from "../../redux/profileReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { withAuthRedirect } from "../hoc/withAuthRedirect";
 import { compose } from "redux";
+import Preloader from "../common/Preloader/Preloader";
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let userId = this.props.router.params.userId;
-    this.props.getProfile(userId, this.props.isAuth);
-  }
+const ProfileContainerHooks = (props) => {
 
+  let userId = props.router.params.userId;
 
 
-  componentDidUpdate(prevProps) {
-    let userId = this.props.router.params.userId;
-    if (prevProps.router.params.userId !== userId) {
-      let userId = this.props.userId;
-      this.props.getProfile(userId);
-    }
-  }
+  useEffect(() => {
+    props.getProfile(userId);
+  }, [useParams()])
 
-  render() {
     return (
-      <Profile
-        {...this.props}
-        profile={this.props.profile}
-        status={this.props.status}
-        updateStatus={this.props.updateUserStatus}
-      />
+        <>
+          {props.isFetching ? <Preloader /> : <Profile
+              {...props}
+              profile={props.profile}
+              status={props.status}
+              updateStatus={props.updateUserStatus}
+          />}
+        </>
     );
-  }
 }
 
 function withRouter(Component) {
@@ -47,9 +41,9 @@ function withRouter(Component) {
 let mapStateToProps = (state) => {
   return {
     profile: state.profileP.profile,
-    isAuth: state.auth.isAuth,
     userId: state.auth.userId,
     status: state.profileP.status,
+    isFetching: state.profileP.isFetching,
   };
 };
 
@@ -57,4 +51,4 @@ export default compose(
   connect(mapStateToProps, { getProfile, updateUserStatus }),
   withRouter,
   withAuthRedirect
-)(ProfileContainer);
+)(ProfileContainerHooks);

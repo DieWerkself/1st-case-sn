@@ -1,23 +1,22 @@
-import { useState } from "react";
+import {useCallback, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
 const ProfileStatus = (props) => {
-  const baseStatus = () => {
-    if (props.aboutMe === "") {
-      return "Статуса нет";
-    } else {
-      return props.aboutMe;
-    }
-  };
+
+  const baseStatus = !props.aboutMe ? "Статуса нет" : props.aboutMe;
+
+  console.log(baseStatus)
+
 
   const [status, setStatus] = useState(baseStatus);
   const [toggle, setToggle] = useState(false);
 
   const changeActive = () => {
-    if (toggle) {
-      setToggle(false);
-      props.updateStatus(status);
-    } else {
+    if (!toggle) {
       setToggle(true);
+      setStatus(baseStatus)
+    } else {
+      setToggle(false);
     }
   };
 
@@ -47,7 +46,7 @@ const ProfileStatus = (props) => {
         </div>
       ) : (
         <div>
-          <span onDoubleClick={changeActive}>{status}</span>
+          <span onDoubleClick={changeActive}>{baseStatus}</span>
         </div>
       )}
 

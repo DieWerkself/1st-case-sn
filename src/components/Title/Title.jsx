@@ -5,7 +5,6 @@ import React from "react";
 import Preloader from "../common/Preloader/Preloader";
 
 const Title = (props) => {
-    debugger
     return (
         <div className={s.headNav}>
             <div className={s.title}>

@@ -11,6 +11,7 @@ import AllUsersContainer from "./components/AllUsers/AllUsersContainer";
 import ProfileContainerC from "./components/Profile/ProfileContainer";
 import TitleContainer from "./components/Title/TitleContainer";
 import Login from "./components/Login/Login";
+import ProfileContainerHooks from "./components/Profile/ProfileContainerHooks";
 
 
 const App = (props) => {

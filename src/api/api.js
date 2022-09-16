@@ -4,7 +4,7 @@ const baseGet = axios.create({
   withCredentials: true,
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
   headers: {
-    "API-KEY": "8fca395a-718c-4e90-b153-25faf266fc5d",
+    "API-KEY": "28e59eef-3cb7-4dc7-ad24-81180d35f72f",
   },
 });
 
@@ -12,7 +12,7 @@ const follow = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/follow/",
   withCredentials: true,
   headers: {
-    "API-KEY": "8fca395a-718c-4e90-b153-25faf266fc5d",
+    "API-KEY": "28e59eef-3cb7-4dc7-ad24-81180d35f72f",
   },
 });
 

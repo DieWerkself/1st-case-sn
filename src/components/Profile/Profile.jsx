@@ -2,12 +2,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
+debugger
   return (
     <div>
       <ProfileInfo
         status={props.status}
         profile={props.profile}
         updateStatus={props.updateStatus}
+        isAuth={props.isAuth}
       />
       <MyPostsContainer />
     </div>

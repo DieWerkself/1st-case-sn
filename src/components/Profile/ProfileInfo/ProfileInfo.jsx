@@ -30,6 +30,7 @@ const ProfileInfo = (props) => {
             <ProfileStatus
               aboutMe={props.status}
               updateStatus={props.updateStatus}
+              isAuth={props.isAuth}
             />
           </div>
         </div>
