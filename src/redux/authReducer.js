@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {authAPI, profileAPI, usersAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_MY_PROFILE = 'SET_MY_PROFILE';
+const TOGGLE_IS_AUTH = 'TOGGLE_IS_AUTH';
 
 let initialState =
     {
@@ -28,6 +29,12 @@ const AuthReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             }
         }
+        case TOGGLE_IS_AUTH: {
+            return {
+                ...state,
+                isAuth: true
+            }
+        }
         case SET_MY_PROFILE: {
             return {
                 ...state,
@@ -41,6 +48,7 @@ const AuthReducer = (state = initialState, action) => {
 
 
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleIsAuth = (isAuth) => ({type: TOGGLE_IS_AUTH, isAuth})
 export const setUserData = (userId, login, email, isAuth) => ({type: SET_USER_DATA, data: {userId, email, login}, isAuth})
 export const setMyProfile = (profile) => ({type: SET_MY_PROFILE, profile})
 
@@ -57,5 +65,24 @@ export const authMe= () => (dispatch) => {
         }
     });
 }
+
+export const authProfile = (data) => (dispatch) => {
+    authAPI.authLogin(data).then((response) => {
+        if (response.resultCode === 0) {
+            let {userId} = response.data;
+            profileAPI.getProfile(userId).then((response) => {
+                console.log(response)
+                dispatch(setMyProfile(response));
+                dispatch(toggleIsAuth(true));
+            });
+            usersAPI.auth().then(response => {
+                if (response.resultCode === 0) {
+                    let {id, login, email} = response.data;
+                    dispatch(setUserData(id, login, email));
+                }
+            });
+        }
+    })
+};
 
 export default AuthReducer;

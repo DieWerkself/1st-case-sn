@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from "../api/api";
+import {authAPI, profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const NEW_TEXT = "UPDATE-NEW-TEXT";
@@ -115,5 +115,7 @@ export const getProfile = (userId) => (dispatch) => {
   }
   dispatch(toggleIsFetching(false));
 };
+
+
 
 export default profileReducer;

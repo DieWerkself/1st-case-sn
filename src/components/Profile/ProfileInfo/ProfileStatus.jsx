@@ -5,9 +5,6 @@ const ProfileStatus = (props) => {
 
   const baseStatus = !props.aboutMe ? "Статуса нет" : props.aboutMe;
 
-  console.log(baseStatus)
-
-
   const [status, setStatus] = useState(baseStatus);
   const [toggle, setToggle] = useState(false);
 

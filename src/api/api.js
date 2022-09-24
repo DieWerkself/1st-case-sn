@@ -1,4 +1,5 @@
 import axios from "axios";
+import {setStatusProfile} from "../redux/profileReducer";
 
 const baseGet = axios.create({
   withCredentials: true,
@@ -60,5 +61,9 @@ export const profileAPI = {
 export const authAPI = {
   auth() {
     return baseGet.get(`auth/me`).then((response) => response.data);
+  },
+  authLogin(data) {
+    return baseGet.post(`auth/login`, data)
+        .then((response) => response.data)
   },
 };

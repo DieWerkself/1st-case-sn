@@ -1,10 +1,12 @@
 import {Field, reduxForm} from "redux-form";
+import {connect} from "react-redux";
+import {authProfile} from "../../redux/authReducer";
 
 const LoginForm = (props) => {
     return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field placeholder={"Login"} name={"login"} component={"input"}/>
+                    <Field placeholder={"Login"} name={"email"} component={"input"}/>
                 </div>
                 <div>
                     <Field placeholder={"Password"} name={"password"} component={"input"}/>
@@ -25,10 +27,10 @@ const LoginReduxForm = reduxForm (
     }
 ) (LoginForm)
 
-const Login = (props) => {
+const LoginStart = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
-    }
+        props.authProfile(formData)
+        }
     return (
         <div>
             <h2>Login</h2>
@@ -36,5 +38,9 @@ const Login = (props) => {
         </div>
     );
 }
+
+let mapStateToProps;
+
+let Login= connect(mapStateToProps,{ authProfile }) (LoginStart)
 
 export default Login;
